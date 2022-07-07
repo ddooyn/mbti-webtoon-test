@@ -1,5 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Main() {
-  return <div>메인</div>;
-}
+const Main = () => {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <button onClick={() => navigate('/test/1')}>시작하기</button>
+    </div>
+  );
+};
+
+export default Main;
