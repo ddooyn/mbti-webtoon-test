@@ -1,33 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import ResultContent from './ResultContent';
 const FirstSection = () => {
   return (
-    <Section>
+    <RecommendSection>
       <BackWrap>
         <TextWrap>
           <p>당신을 위한</p>
           <p>폭발적 추천</p>
         </TextWrap>
-        <ResultContent>
-          <img
-            src="https://ccdn.lezhin.com/v2/comics/5791250995609600/images/tall.webp?updated=1618363369165&width=177"
-            alt="추천 웹툰 이미지"
-          />
-          <TitleInfo>
-            <p>별과 하나의 시</p>
-            <TagList>
-              <li>#힐링물</li>
-              <li>#잔잔물</li>
-            </TagList>
-          </TitleInfo>
-        </ResultContent>
+        <ResultContent />
       </BackWrap>
-    </Section>
+    </RecommendSection>
   );
 };
 
-const Section = styled.section`
+const RecommendSection = styled.section`
   height: inherit;
   margin-bottom: 100px;
 `;
@@ -59,36 +47,6 @@ const TextWrap = styled.div`
   p {
     font-weight: bold;
     text-align: center;
-  }
-`;
-
-const ResultContent = styled.div`
-  position: absolute;
-  left: 270px;
-  top: 225px;
-  display: flex;
-  gap: 20px;
-  transform: rotate(40deg);
-  z-index: 20;
-  img {
-    border-radius: 25px;
-  }
-`;
-
-const TitleInfo = styled.div`
-  color: #fff;
-  p {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-`;
-
-const TagList = styled.ul`
-  display: flex;
-  gap: 10px;
-  li {
-    font-size: 15px;
   }
 `;
 
