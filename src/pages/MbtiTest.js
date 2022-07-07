@@ -15,10 +15,10 @@ const MbtiTest = () => {
       check: false,
     },
     {
-      question: '시드머니가 생겨 주식을 시작했다. 어디 투자할까?',
+      question: '친구가 좋아하는 노래를 추천해달라고 한다.',
       answer: [
-        '누가봐도 안전하고 든든해보이는 A사!',
-        '조만간 떡상할 것 같은 B사!',
+        '멜로디가 좋은 노래를 추천했다!',
+        '가사가 참 예쁜 노래를 추천했다!',
       ],
       result: ['S', 'N'],
       check: false,
@@ -42,9 +42,9 @@ const MbtiTest = () => {
       check: false,
     },
     {
-      question: '회사 부사수가 업무를 물어본다.',
+      question: '처음으로, 회사 부사수가 업무를 물어본다.',
       answer: [
-        '현재 상황에서 어떻게 해야하는지 알려 준다.',
+        '현재 상황에서 어떻게 해야하는지 자세히 알려 준다.',
         '다 알려주지 않고 힌트를 줘서 업무를 해결하게 한다.',
       ],
       result: ['S', 'N'],
@@ -60,7 +60,7 @@ const MbtiTest = () => {
       check: false,
     },
     {
-      question: '오늘은 데이트가 있다.',
+      question: '오늘은 데이트가 있다. 준비 중에 나는?',
       answer: [
         '어제 준비한 옷을 그대로 입고 나간다.',
         '오늘은 이게 더 이쁜데? 끌리는 옷을 입고 나간다.',
@@ -73,7 +73,7 @@ const MbtiTest = () => {
         'A는 다같이 먹을 것을 챙겨왔는데, B는 혼자 먹을 것만 챙겨왔다. A가 섭섭함을 보인다. 그걸 본 나는?',
       answer: [
         '나 같아도 B는 나를 생각 안하나 싶어서 섭섭할거 같은데..',
-        '섭섭할거까지 있나? 자기 먹고싶은 거 가져와서 먹는다는데… 미리 가져오기로 한 것도 아니고..',
+        '섭섭할거까지 있나? 미리 가져오기로 한 것도 아니고..',
       ],
       result: ['F', 'T'],
       check: false,
@@ -88,17 +88,20 @@ const MbtiTest = () => {
       check: false,
     },
     {
-      question: '첫 회사에 출근 후 친구가 회사에 대해 물어본다.',
+      question: '레시피를 보면서 요리를 하고 있다.',
       answer: [
-        '구체적으로 오늘 있었던 일을 말한다.',
-        '전체적인 그날의 분위기를 묘사한다.',
+        '정량에서 조금이라도 벗어나는 것은 용납하지 못한다.',
+        '정량에서 대충 근사치라면 다음 단계로 넘어간다.',
       ],
       result: ['S', 'N'],
       check: false,
     },
     {
       question: '가기로 한 식당이 있는데 문이 닫혀있다.',
-      answer: ['살짝 기분이 상했다..', '그럴 수도 있지. 별 생각 안든다.'],
+      answer: [
+        '일부러 시간도 맞췄는데.. 살짝 기분이 상했다..',
+        '에이 그럴 수도 있지. 별 생각 안든다.',
+      ],
       result: ['J', 'P'],
       check: false,
     },
@@ -166,11 +169,12 @@ const MbtiTest = () => {
               let mbti = '';
               if (testIdx == 12) {
                 for (let [key, val] of resMap) {
-                  if (val == 2) {
+                  if (val >= 2) {
                     mbti += key;
                   }
                 }
-                navigate('/result');
+                console.log(mbti);
+                // navigate('/result');
               } else {
                 navigate(`/test/${parseInt(testIdx) + 1}`);
               }
