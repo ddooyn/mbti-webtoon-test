@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateCheck } from '../redux/modules/mbtiqna';
 import { updateCount, createResult } from '../redux/modules/mbti';
@@ -13,6 +13,10 @@ const MbtiTest = () => {
   const curTest = qnaData[testIdx];
   const checkCnt = useRef(1);
   checkCnt.current = qnaData.filter((v) => v.check).length;
+
+  if (testIdx != 1 && checkCnt.current == 1) {
+    return <Navigate to="/test/1" replace={true} />
+  }
 
   const onClickAnswer = (ansIdx) => {
     let key = curTest.result[ansIdx];
