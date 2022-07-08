@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateCheck } from '../redux/modules/mbtiqna';
+import { updateCount, createResult } from '../redux/modules/mbti';
 import styled from 'styled-components';
 
 const MbtiTest = () => {
@@ -10,14 +11,6 @@ const MbtiTest = () => {
   const dispatch = useDispatch();
   const testIdx = useParams().id;
   const curTest = qnaData[testIdx];
-
-  const resultArr = ['E', 'I', 'S', 'N', 'F', 'T', 'J', 'P'];
-  const resultMap = resultArr.reduce((map, key) => {
-    map.set(key, 0);
-    return map;
-  }, new Map());
-  const [resMap, setResMap] = useState(resultMap);
-  
   const checkCnt = useRef(1);
   checkCnt.current = qnaData.filter((v) => v.check).length;
 
@@ -35,19 +28,12 @@ const MbtiTest = () => {
           <li
             key={i}
             onClick={() => {
-              let result = curTest.result[i];
-              setResMap(resMap.set(result, +resMap.get(result) + 1));
+              let key = curTest.result[i];
+              dispatch(updateCount(key));
               dispatch(updateCheck(testIdx));
-              console.log(resMap);
-              let mbti = '';
               if (testIdx == 12) {
-                for (let [key, val] of resMap) {
-                  if (val >= 2) {
-                    mbti += key;
-                  }
-                }
-                console.log(mbti);
-                // navigate('/result');
+                dispatch(createResult());
+                navigate('/result');
               } else {
                 navigate(`/test/${parseInt(testIdx) + 1}`);
               }
