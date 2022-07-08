@@ -126,7 +126,6 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'mbtiqna/UPDATE': {
       state.list[action.index].check = true;
-      // index번째 질문 체크 여부를 false에서 true로 변경
       return { list: [...state.list] };
     }
     default:

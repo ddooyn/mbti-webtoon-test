@@ -22,7 +22,6 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'mbti/UPDATE': {
       const newMap = state.map.set(action.key, +state.map.get(action.key) + 1);
-      console.log(newMap);
       return { map: newMap };
     }
     case 'mbti/CREATE': {
