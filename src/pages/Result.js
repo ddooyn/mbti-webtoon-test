@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
 import FirstSection from '../components/Result/FirstSection';
 import SecondSection from '../components/Result/SecondSection';
 
 const Result = () => {
+  const result = useSelector((state) => state.mbti.result);
+  const mbti = result ?? 'ISFP';
+  console.log(mbti);
+
   return (
     <ResultWrap>
       <SrOnly>테스트 결과페이지 입니다.</SrOnly>
