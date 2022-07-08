@@ -14,50 +14,116 @@ const MbtiTest = () => {
   const checkCnt = useRef(1);
   checkCnt.current = qnaData.filter((v) => v.check).length;
 
+  const onClickAnswer = (ansIdx) => {
+    let key = curTest.result[ansIdx];
+    dispatch(updateCount(key));
+    dispatch(updateCheck(testIdx));
+    if (testIdx == 12) {
+      dispatch(createResult());
+      navigate('/result');
+    } else {
+      navigate(`/test/${parseInt(testIdx) + 1}`);
+    }
+  };
+
   return (
     <>
-      <strong>Q{testIdx}.</strong>
-      <em>{curTest.question}</em>
+      <Question>
+        <strong>Q{testIdx}.</strong>
+        <em>{curTest.question}</em>
+      </Question>
 
       <ProgressBar>
         <Highlight width={(checkCnt.current / 12) * 100 + '%'} />
       </ProgressBar>
 
-      <ul>
-        {curTest.answer.map((v, i) => (
-          <li
-            key={i}
-            onClick={() => {
-              let key = curTest.result[i];
-              dispatch(updateCount(key));
-              dispatch(updateCheck(testIdx));
-              if (testIdx == 12) {
-                dispatch(createResult());
-                navigate('/result');
-              } else {
-                navigate(`/test/${parseInt(testIdx) + 1}`);
-              }
-            }}
-          >
-            <button>{v}</button>
-          </li>
-        ))}
-      </ul>
+      <Answer>
+        <ul>
+          {curTest.answer.map((v, i) => (
+            <li key={i}>
+              <button onClick={() => onClickAnswer(i)}>{v}</button>
+            </li>
+          ))}
+        </ul>
+      </Answer>
     </>
   );
 };
 
 export default MbtiTest;
 
+const Question = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px 50px 220px;
+  min-height: 70vh;
+  background: #ed1c24;
+  color: #fff;
+  strong {
+    margin-bottom: 20px;
+    font-size: 50px;
+  }
+  em {
+    display: block;
+    width: 95%;
+    height: 2em;
+    font-size: 46px;
+    @media only screen and (max-width: 768px) {
+      font-size: 6vw;
+    }
+  }
+`;
+
 const ProgressBar = styled.div`
-  width: 370px;
+  width: 100%;
   height: 6px;
+  margin-bottom: 15px;
   background: #dbdee3;
 `;
 
 const Highlight = styled.div`
+  position: relative;
   width: ${(props) => props.width};
   height: 6px;
   background: #170512;
   transition: width 1s;
+  &::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 51px;
+    height: 67px;
+    background: url(/img/lzdang.png);
+  }
+`;
+
+const Answer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 23vh;
+  padding: 0 30px;
+  button {
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background: #eff1f4;
+    font-size: 22px;
+    transition: background 0.2s ease-in;
+    &:hover {
+      background: #dbdee3;
+      font-weight: 500;
+    }
+  }
+  @media only screen and (max-width: 550px) {
+    padding: 0 20px;
+    button {
+      padding: 1em;
+      margin-bottom: 2vh;
+      font-size: 4vw;
+    }
+  }
 `;
