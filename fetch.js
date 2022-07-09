@@ -1,23 +1,49 @@
-const axios = require('axios').default;
+const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 
-const getHTML = async () => {
+const crawler = async () => {
   try {
-    return await axios.get(`https://www.lezhin.com/ko/comic/sparrow`);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto('https://www.lezhin.com/ko/romance?page=0&sub_tags=all');
+
+    let lastHeight = await page.evaluate('document.body.scrollHeight');
+
+    while (lastHeight) {
+      await page.evaluate('window.scrollTo(0, document.body.scrollHeight/10)');
+      await page.waitForTimeout(500);
+      await page.evaluate('window.scrollTo(0, document.body.scrollHeight/5)');
+      await page.waitForTimeout(500);
+      await page.evaluate('window.scrollTo(0, document.body.scrollHeight/2)');
+      await page.waitForTimeout(500);
+      await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
+      let newHeight = await page.evaluate('document.body.scrollHeight');
+      if (newHeight === lastHeight) {
+        break;
+      }
+      lastHeight = newHeight;
+    }
+
+    const content = await page.content();
+
+    const $ = cheerio.load(content);
+    const list = $('#exhibit-sub-tags').children('li');
+
+    let RecommendData = [];
+    list.each((idx, node) => {
+      RecommendData.push({
+        title: $(node).find('div.lzComic__title').text(),
+        link: $(node).find('a').attr('href'),
+        img: $(node)
+          .find('li > a > div.lzComic__thumb > picture > img')
+          .attr('src'),
+      });
+    });
+    console.log(RecommendData);
+    browser.close();
   } catch (error) {
     console.log(error);
   }
 };
 
-const parsing = async () => {
-  const html = await getHTML();
-  const $ = cheerio.load(html.data);
-  const LzList = $('.comicInfo__detail');
-  let courses = [];
-  LzList.each((idx, node) => {
-    const title = $(node).find('.comicInfo__title').text();
-    console.log(title);
-  });
-};
-
-parsing();
+crawler();
