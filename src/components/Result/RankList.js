@@ -1,35 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const RankList = () => {
-  const rankArr = [
-    {
-      imgAdd: `https://ccdn.lezhin.com/v2/comics/260/images/square.webp?updated=1626417228107&width=84`,
-      title: `레바툰`,
-    },
-    {
-      imgAdd: `https://ccdn.lezhin.com/v2/comics/6727405857669120/images/square.webp?updated=1656983622401&width=84`,
-      title: `박씨유대기`,
-    },
-    {
-      imgAdd: `https://ccdn.lezhin.com/v2/comics/4825209502760960/images/square.webp?updated=1655345793457&width=84`,
-      title: `자꾸 그러시면 저 녹아요.`,
-    },
-    {
-      imgAdd: `https://ccdn.lezhin.com/v2/comics/5183802990723072/images/square.webp?updated=1645421373661&width=84`,
-      title: `클라우드`,
-    },
-  ];
-
+const RankList = ({ rankData }) => {
+  const lzURL = 'https://www.lezhin.com';
+  RankList.propTypes = {
+    rankData: PropTypes.arrayOf(PropTypes.object),
+  };
   return (
     <RankListWrap>
-      {rankArr.map((data) => (
-        <RankItem key={data.title}>
-          <div>
-            <RankImg src={data.imgAdd} alt="랭킹 상위 이미지" />
-          </div>
-          <RankTitle>{data.title}</RankTitle>
-        </RankItem>
+      {rankData?.map((data) => (
+        <a href={`${lzURL}${data.link}`} key={data.title}>
+          <RankItem>
+            <div>
+              <RankImg src={data.img} alt="랭킹 상위 이미지" />
+            </div>
+            <RankTitle>{data.title}</RankTitle>
+          </RankItem>
+        </a>
       ))}
     </RankListWrap>
   );

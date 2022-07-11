@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ResultContent from './ResultContent';
-const FirstSection = () => {
+
+const FirstSection = ({ getData }) => {
+  FirstSection.propTypes = {
+    getData: PropTypes.objectOf(PropTypes.string),
+  };
   return (
     <RecommendSection>
       <BackWrap>
@@ -9,7 +14,7 @@ const FirstSection = () => {
           <p>당신을 위한</p>
           <p>폭발적 추천</p>
         </TextWrap>
-        <ResultContent />
+        <ResultContent getData={getData} />
       </BackWrap>
     </RecommendSection>
   );
