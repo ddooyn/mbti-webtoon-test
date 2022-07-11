@@ -2,21 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ResultContent = () => {
+  const lzURL = 'https://www.lezhin.com';
   const RecommendArr = {
-    imgAdd: `https://ccdn.lezhin.com/v2/comics/5791250995609600/images/tall.webp?updated=1618363369165&width=177`,
+    img: `https://ccdn.lezhin.com/v2/comics/5791250995609600/images/tall.webp?updated=1618363369165&width=177`,
+    link: '/ko/comic/sparrow',
     title: `별과 하나의 시`,
-    tag: ['#힐링물', '#잔잔물'],
+    artist: '새별숯, 유나물',
   };
   return (
     <ResultContentWrap>
-      <img src={RecommendArr.imgAdd} alt="추천 웹툰 이미지" />
+      <a href={`${lzURL}${RecommendArr.link}`}>
+        <img src={RecommendArr.img} alt="추천 웹툰 이미지" />
+      </a>
       <TitleInfo>
-        <Title>{RecommendArr.title}</Title>
-        <TagList>
-          {RecommendArr.tag.map((value) => (
-            <li key={value}>{value}</li>
-          ))}
-        </TagList>
+        <a href={`${lzURL}${RecommendArr.link}`}>
+          <Title>{RecommendArr.title}</Title>
+        </a>
+        <Artist>{RecommendArr.artist}</Artist>
       </TitleInfo>
     </ResultContentWrap>
   );
@@ -37,23 +39,17 @@ const ResultContentWrap = styled.div`
 
 const TitleInfo = styled.div`
   color: #fff;
-  p {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
+  font-weight: bold;
 `;
 
-const TagList = styled.ul`
-  display: flex;
-  gap: 10px;
-  li {
-    font-size: 15px;
-  }
+const Artist = styled.p`
+  font-size: 15px;
 `;
 
 const Title = styled.p`
   width: 145px;
+  font-size: 25px;
+  margin-bottom: 10px;
   white-space: wrap;
 `;
 
