@@ -28,39 +28,37 @@ const Result = () => {
       });
   };
   const mbtiResultData = (mbti) => {
+    let genre = '';
     switch (mbti) {
       case 'ISFP':
       case 'INTP':
       case 'INTJ':
       case 'ENTP':
-        console.log('판타지');
-        resultData('fantasy');
+        genre = 'fantasy';
         break;
       case 'ENFJ':
       case 'ENTJ':
       case 'ESTP':
       case 'ISTP':
-        console.log('소년만화');
-        resultData('boys');
+        genre = 'boys';
         break;
       case 'INFP':
       case 'ENFP':
       case 'ESFP':
       case 'ESFJ':
-        console.log('일상툰');
-        resultData('drama');
+        genre = 'drama';
         break;
       case 'INFJ':
       case 'ISFJ':
       case 'ISTJ':
       case 'ESTJ':
-        console.log('힐링툰');
-        resultData('romance');
+        genre = 'romance';
         break;
       default:
         console.log('올바르지 않은 정보');
         break;
     }
+    resultData(genre);
   };
 
   useEffect(() => {

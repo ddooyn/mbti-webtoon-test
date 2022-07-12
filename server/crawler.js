@@ -7,7 +7,7 @@ const genreMap = new Map([
   ['drama', 'https://www.lezhin.com/ko/drama?page=0&sub_tags=all'],
   [
     'fantasy',
-    'https://www.lezhin.com/ko/boys?page=0&sub_tags=%ED%8C%90%ED%83%80%EC%A7%80',
+    'https://www.lezhin.com/ko/drama?page=0&sub_tags=%ED%8C%90%ED%83%80%EC%A7%80',
   ],
 ]);
 
@@ -32,28 +32,13 @@ const crawler = async (genre) => {
     let url = genreMap.get(v);
     await page.goto(url);
 
-    let lastHeight = await page.evaluate('document.body.scrollHeight');
-    let discount = 10;
-    while (lastHeight) {
-      while (discount > 1) {
-        await page.evaluate(
-          `window.scrollTo(0, document.body.scrollHeight/${discount})`,
-        );
-        await page.waitForTimeout(100);
-        discount /= 2;
-      }
-      await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-      let newHeight = await page.evaluate('document.body.scrollHeight');
-      if (newHeight === lastHeight) {
-        break;
-      }
-      lastHeight = newHeight;
-    }
+    await page.evaluate(`window.scrollTo(0, document.body.scrollHeight/5)`);
+    await page.waitForTimeout(100);
 
     const content = await page.content();
     const $ = cheerio.load(content);
-    const list = $('#exhibit-sub-tags').children('li:nth-child(-n+10)');
 
+    const list = $('#exhibit-sub-tags').children('li:nth-child(-n+10)');
     list.each((idx, node) => {
       recommendData.push({
         title: $(node).find('div.lzComic__info > div.lzComic__title').text(),
