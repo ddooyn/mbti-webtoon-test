@@ -13,8 +13,12 @@ export default createGlobalStyle`
   }
   html, body, #root {
     width: 100%;
-    height: 100%;
     background-color: #fff;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+    }
   }
   a {
     text-decoration : none;

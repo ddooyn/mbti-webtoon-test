@@ -48,8 +48,7 @@ const RecommendAnim = keyframes`
 `;
 
 const RecommendSection = styled.section`
-  height: inherit;
-  margin-bottom: 100px;
+  height: 870px;
 `;
 
 const BackWrap = styled.div`
