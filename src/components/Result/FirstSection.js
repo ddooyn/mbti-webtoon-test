@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import ResultContent from './ResultContent';
 
 const FirstSection = () => {
@@ -16,6 +16,37 @@ const FirstSection = () => {
   );
 };
 
+const RecommendAnim = keyframes`
+0%{
+  right: -412px;
+  top: -240px;
+}
+50%{
+  right: -412px;
+  top: -240px;
+}
+60%{
+  right: 422px;
+  top: 250px;
+}
+70%{
+  right: 302px;
+  top: 140px;
+}
+80%{
+  right: 402px;
+  top: 230px;
+}
+90%{
+  right: 312px;
+  top: 150px;
+}
+100%{
+  right: 352px;
+  top: 190px;
+}
+`;
+
 const RecommendSection = styled.section`
   height: inherit;
   margin-bottom: 100px;
@@ -31,6 +62,7 @@ const BackWrap = styled.div`
 
   background-color: #ed1c24;
   transform: rotate(-40deg);
+  animation: ${RecommendAnim} 800ms ease-in forwards;
   z-index: 10;
 `;
 

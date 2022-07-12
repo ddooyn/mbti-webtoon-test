@@ -17,13 +17,9 @@ const Result = () => {
         return res.json();
       })
       .then((data) => {
-        let recommendData = {
-          title: data.recommendRandomData.title,
-          link: data.recommendRandomData.link,
-          img: data.recommendRandomData.img,
-          artist: data.recommendRandomData.artist,
-        };
-        dispatch(updateRecommned(recommendData, data.rankData, true));
+        dispatch(
+          updateRecommned(data.recommendRandomData, data.rankData, true),
+        );
       });
   };
 
