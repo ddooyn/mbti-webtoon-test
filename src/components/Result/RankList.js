@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-const RankList = ({ rankData }) => {
+const RankList = () => {
   const lzURL = 'https://www.lezhin.com';
-  RankList.propTypes = {
-    rankData: PropTypes.arrayOf(PropTypes.object),
-  };
+  const rankData = useSelector((state) => state.resultdata.rankData);
   return (
     <RankListWrap>
       {rankData?.map((data) => (

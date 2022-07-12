@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import RankList from './RankList';
 import { BsMouse, BsChevronDown } from 'react-icons/bs';
 
-const SecondSection = ({ rankData }) => {
-  SecondSection.propTypes = {
-    rankData: PropTypes.arrayOf(PropTypes.object),
-  };
+const SecondSection = () => {
   return (
     <OtherSection>
       <OtherPopularText>다른 인기작품 보기</OtherPopularText>
@@ -15,7 +11,7 @@ const SecondSection = ({ rankData }) => {
         <BsMouse />
         <BsChevronDown />
       </IconWrap>
-      <RankList rankData={rankData} />
+      <RankList />
     </OtherSection>
   );
 };

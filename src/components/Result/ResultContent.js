@@ -1,25 +1,44 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useSelector } from 'react-redux';
+import BounceLoader from 'react-spinners/BounceLoader';
 
 const ResultContent = () => {
   const lZ_URL = 'https://www.lezhin.com';
-  const recData = useSelector((state) => state.resultdata);
+  const recData = useSelector((state) => state.resultdata.rcData);
+  let isLoading = useSelector((state) => state.resultdata.isLoading);
 
   return (
-    <ResultContentWrap>
-      <a href={`${lZ_URL}${recData.link}`}>
-        <img src={recData.img} alt="추천 웹툰 이미지" />
-      </a>
-      <TitleInfo>
-        <a href={`${lZ_URL}${recData.link}`}>
-          <Title>{recData.title}</Title>
-        </a>
-        <Artist>{recData.artist}</Artist>
-      </TitleInfo>
-    </ResultContentWrap>
+    <>
+      {isLoading ? (
+        <ResultContentWrap>
+          <a href={`${lZ_URL}${recData?.link}`}>
+            <img src={recData?.img} alt="추천 웹툰 이미지" />
+          </a>
+          <TitleInfo>
+            <a href={`${lZ_URL}${recData?.link}`}>
+              <Title>{recData?.title}</Title>
+            </a>
+            <Artist>{recData?.artist}</Artist>
+          </TitleInfo>
+        </ResultContentWrap>
+      ) : (
+        <LodingAnimWrap>
+          <BounceLoader color="#fff" size={100} speedMultiplier={1.5} />
+        </LodingAnimWrap>
+      )}
+    </>
   );
 };
+
+const FadeIn = keyframes`
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+    }
+`;
 
 const ResultContentWrap = styled.div`
   position: absolute;
@@ -29,9 +48,16 @@ const ResultContentWrap = styled.div`
   gap: 10px;
   transform: rotate(40deg);
   z-index: 20;
+  animation: ${FadeIn} 500ms forwards;
   img {
     border-radius: 25px;
   }
+`;
+
+const LodingAnimWrap = styled.div`
+  position: absolute;
+  left: 400px;
+  top: 280px;
 `;
 
 const TitleInfo = styled.div`
@@ -49,5 +75,4 @@ const Title = styled.p`
   margin-bottom: 10px;
   white-space: wrap;
 `;
-
 export default ResultContent;

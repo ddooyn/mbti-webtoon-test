@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRecommned } from '../redux/modules/resultdata';
@@ -10,7 +10,6 @@ const Result = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.mbti.result);
   const mbti = result ?? 'ISFP';
-  const [rankArr, setRankArr] = useState();
 
   const resultData = (result) => {
     fetch(`/getData?name=${result}`)
@@ -24,8 +23,7 @@ const Result = () => {
           img: data.recommendRandomData.img,
           artist: data.recommendRandomData.artist,
         };
-        dispatch(updateRecommned(recommendData));
-        setRankArr(data.rankData);
+        dispatch(updateRecommned(recommendData, data.rankData, true));
       });
   };
 
@@ -71,7 +69,7 @@ const Result = () => {
     <ResultWrap>
       <SrOnly>테스트 결과페이지 입니다.</SrOnly>
       <FirstSection />
-      <SecondSection rankData={rankArr} />
+      <SecondSection />
     </ResultWrap>
   );
 };
