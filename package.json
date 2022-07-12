@@ -20,6 +20,7 @@
     "react-spinners": "^0.13.3",
     "redux": "^4.2.0",
     "styled-components": "^5.3.5",
+    "typeit-react": "^2.5.4",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
