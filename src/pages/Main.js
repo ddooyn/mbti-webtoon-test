@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typeit from 'typeit-react';
 
+import Button from '../components/Button/Button';
+
 const Main = () => {
-  const navigate = useNavigate();
   return (
     <>
       <Title>
@@ -12,17 +12,21 @@ const Main = () => {
           <strong>LEZHIN</strong>
         </Lezhin>
         <h1>
-        <TypeText>
-          <em>폭발</em>💣이라는 것이
-          <br />
-          <em>&#39;추천&#39;</em> 한다..💥
-        </TypeText>
+          <TypeText>
+            <em>폭발</em>💣이라는 것이
+            <br />
+            <em>&#39;추천&#39;</em> 한다..💥
+          </TypeText>
         </h1>
       </Title>
       <Start>
-        <StartBtn onClick={() => navigate('/test/1')}>
-          테스트하고 웹툰 추천받기
-        </StartBtn>
+        <Button
+          text={'테스트하고 웹툰 추천받기'}
+          backcolor={'#fff'}
+          color={'#000'}
+          goto={'/test/1'}
+          opacity={'rgba(255, 255, 255, 0.9)'}
+        />
       </Start>
     </>
   );
@@ -63,24 +67,12 @@ const Start = styled.section`
   left: -20px;
   right: -20px;
   bottom: -12vh;
+  padding-top: 60px;
   height: 40vh;
   border-radius: 80px;
   background: #ed1c24;
   text-align: center;
   @media only screen and (max-width: 768px) {
     bottom: -8vh;
-  }
-`;
-
-const StartBtn = styled.button`
-  padding: 25px 45px;
-  margin-top: 10vh;
-  border-radius: 20px;
-  background: #fff;
-  font-size: 17px;
-  font-weight: 700;
-  transition: background 0.2s ease-in;
-  &:hover {
-    background: rgba(255, 255, 255, 0.9);
   }
 `;
