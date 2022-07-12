@@ -1,22 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-const ResultContent = ({ getData }) => {
-  ResultContent.propTypes = {
-    getData: PropTypes.objectOf(PropTypes.string),
-  };
-  const lzURL = 'https://www.lezhin.com';
+import { useSelector } from 'react-redux';
+
+const ResultContent = () => {
+  const lZ_URL = 'https://www.lezhin.com';
+  const recData = useSelector((state) => state.resultdata);
 
   return (
     <ResultContentWrap>
-      <a href={`${lzURL}${getData.link}`}>
-        <img src={getData.img} alt="추천 웹툰 이미지" />
+      <a href={`${lZ_URL}${recData.link}`}>
+        <img src={recData.img} alt="추천 웹툰 이미지" />
       </a>
       <TitleInfo>
-        <a href={`${lzURL}${getData.link}`}>
-          <Title>{getData.title}</Title>
+        <a href={`${lZ_URL}${recData.link}`}>
+          <Title>{recData.title}</Title>
         </a>
-        <Artist>{getData.artist}</Artist>
+        <Artist>{recData.artist}</Artist>
       </TitleInfo>
     </ResultContentWrap>
   );

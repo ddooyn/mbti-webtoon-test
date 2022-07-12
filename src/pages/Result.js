@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateRecommned } from '../redux/modules/resultdata';
 
 import FirstSection from '../components/Result/FirstSection';
 import SecondSection from '../components/Result/SecondSection';
 
 const Result = () => {
+  const dispatch = useDispatch();
   const result = useSelector((state) => state.mbti.result);
   const mbti = result ?? 'ISFP';
-
-  const [RecommendArr, setRecommendArr] = useState({});
   const [rankArr, setRankArr] = useState();
 
   const resultData = (result) => {
@@ -18,15 +18,17 @@ const Result = () => {
         return res.json();
       })
       .then((data) => {
-        setRecommendArr({
+        let recommendData = {
           title: data.recommendRandomData.title,
           link: data.recommendRandomData.link,
           img: data.recommendRandomData.img,
           artist: data.recommendRandomData.artist,
-        });
+        };
+        dispatch(updateRecommned(recommendData));
         setRankArr(data.rankData);
       });
   };
+
   const mbtiResultData = (mbti) => {
     let genre = '';
     switch (mbti) {
@@ -68,7 +70,7 @@ const Result = () => {
   return (
     <ResultWrap>
       <SrOnly>테스트 결과페이지 입니다.</SrOnly>
-      <FirstSection getData={RecommendArr} />
+      <FirstSection />
       <SecondSection rankData={rankArr} />
     </ResultWrap>
   );
