@@ -117,10 +117,7 @@ const Answer = styled.section`
     background: #eff1f4;
     font-size: 22px;
     transition: background 0.2s ease-in;
-    &:hover {
-      background: #dbdee3;
-      font-weight: 500;
-    }
+    font-weight: 500;
   }
   @media only screen and (max-width: 550px) {
     padding: 0 20px;
