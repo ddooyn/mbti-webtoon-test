@@ -10,7 +10,7 @@ import Button from '../components/Button/Button';
 const Result = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.mbti.result);
-  const mbti = result ?? 'ISFP';
+  const mbti = result ?? 'INTP';
 
   const resultData = (result) => {
     fetch(`/getData?name=${result}`)
@@ -27,29 +27,35 @@ const Result = () => {
   const mbtiResultData = (mbti) => {
     let genre = '';
     switch (mbti) {
-      case 'ISFP':
       case 'INTP':
-      case 'INTJ':
+      case 'ISFP':
       case 'ENTP':
+      case 'INFJ':
         genre = 'fantasy';
         break;
       case 'ENFJ':
-      case 'ENTJ':
-      case 'ESTP':
-      case 'ISTP':
-        genre = 'boys';
+        genre = 'romanceComic';
         break;
       case 'INFP':
+      case 'ENTJ':
+      case 'ISTP':
+      case 'INTJ':
+        genre = 'boys-drama';
+        break;
+      case 'ESTP':
+        genre = 'boys';
+        break;
       case 'ENFP':
       case 'ESFP':
       case 'ESFJ':
         genre = 'drama';
         break;
-      case 'INFJ':
       case 'ISFJ':
-      case 'ISTJ':
       case 'ESTJ':
         genre = 'romance';
+        break;
+      case 'ISTJ':
+        genre = 'romance-ori';
         break;
       default:
         console.log('올바르지 않은 정보');

@@ -4,10 +4,22 @@ const cheerio = require('cheerio');
 const genreMap = new Map([
   ['romance', 'https://www.lezhin.com/ko/romance?page=0&sub_tags=all'],
   ['boys', 'https://www.lezhin.com/ko/boys?page=0&sub_tags=all'],
+  [
+    'boys-drama',
+    'https://www.lezhin.com/ko/boys?page=0&sub_tags=%EB%93%9C%EB%9D%BC%EB%A7%88',
+  ],
   ['drama', 'https://www.lezhin.com/ko/drama?page=0&sub_tags=all'],
   [
     'fantasy',
-    'https://www.lezhin.com/ko/drama?page=0&sub_tags=%ED%8C%90%ED%83%80%EC%A7%80',
+    'https://www.lezhin.com/ko/boys?page=0&sub_tags=%ED%8C%90%ED%83%80%EC%A7%80',
+  ],
+  [
+    'romanceComic',
+    'https://www.lezhin.com/ko/romance?page=0&sub_tags=%EC%B9%9C%EA%B5%AC%3E%EC%97%B0%EC%9D%B8',
+  ],
+  [
+    'romance-ori',
+    'https://www.lezhin.com/ko/romance?page=0&sub_tags=%EB%8F%99%EC%96%91%ED%92%8D',
   ],
 ]);
 
@@ -49,9 +61,12 @@ const crawler = async (genre) => {
     });
     recommendRandomData =
       recommendData[Math.floor(Math.random() * recommendData.length)];
+
     await page.waitForTimeout(50);
+
     await page.goto('https://www.lezhin.com/ko/ranking?genre=_all');
 
+    await page.waitForTimeout(100);
     const Rankcontent = await page.content();
     const $$ = cheerio.load(Rankcontent);
     const RankingList = $$('#rank-realtime > ul').children(
