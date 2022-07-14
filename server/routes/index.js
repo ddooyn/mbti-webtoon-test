@@ -8,6 +8,7 @@ app.listen(port);
 let getCrawler = require('../crawler');
 
 app.use('/getData', async function (req, res) {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
   let result;
 
   if (req.query.name) {
