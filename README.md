@@ -5,7 +5,9 @@ mbti 결과를 토대로 레진 웹툰을 추천하는 서비스입니다.
 
 <br/>
 <br/>
+
 ![main](https://user-images.githubusercontent.com/64121533/178946513-f71ff99a-813b-484f-a63e-eab941b73999.gif)
+
 <br/>
 배포 페이지 : https://mbtiwebtoontest.netlify.app
 
