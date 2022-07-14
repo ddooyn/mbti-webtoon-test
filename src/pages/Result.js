@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRecommned } from '../redux/modules/resultdata';
+import { Navigate } from '../../node_modules/react-router-dom/index';
 
 import FirstSection from '../components/Result/FirstSection';
 import SecondSection from '../components/Result/SecondSection';
@@ -9,8 +10,19 @@ import Button from '../components/Button/Button';
 
 const Result = () => {
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.mbti.result);
-  const mbti = result ?? 'INTP';
+  const mbti = useSelector((state) => state.mbti.result);
+  if (!mbti) return <Navigate to="/" replace={true} />;
+
+  const preventGoBack = () => {
+    history.pushState(null, '', location.href);
+  };
+  useEffect(() => {
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', preventGoBack);
+    return () => {
+      window.removeEventListener('popstate', preventGoBack);
+    };
+  }, []);
 
   const resultData = (result) => {
     fetch(`https://mbtiwebtoontest.herokuapp.com/getData?name=${result}`)
