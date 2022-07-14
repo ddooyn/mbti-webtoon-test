@@ -13,12 +13,7 @@ const Result = () => {
   const mbti = result ?? 'INTP';
 
   const resultData = (result) => {
-    fetch(`/getData?name=${result}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
+    fetch(`https://mbtiwebtoontest.herokuapp.com/getData?name=${result}`)
       .then((res) => {
         return res.json();
       })
