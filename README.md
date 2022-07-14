@@ -1,21 +1,18 @@
 # mbti 기반 레진 웹툰 추천 서비스
 
-mbti 결과를 토대로 레진 웹툰을 추천하는 서비스입니다. 
-포트폴리오 용으로 제작된 페이지입니다.
-
+mbti 결과를 토대로 레진 웹툰을 추천하는 서비스입니다.
 <br/>
 <br/>
-
 ![main](https://user-images.githubusercontent.com/64121533/178946513-f71ff99a-813b-484f-a63e-eab941b73999.gif)
-
 <br/>
 배포 페이지 : https://mbtiwebtoontest.netlify.app
 
-## 활용 스택
+### 활용 스택
 
 <hr/>
 
 FrontEnd
+
 <div style="display: flex">
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">
@@ -25,6 +22,7 @@ FrontEnd
 </div>
 
 BackEnd
+
 <div style="display: flex">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white">
@@ -33,6 +31,7 @@ BackEnd
 </div>
 
 etc.
+
 <div style="display: flex">
 <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white">
 <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E">
@@ -42,7 +41,16 @@ etc.
 
 ## 서비스 소개
 
-12문항으로 이루어진 간단한 mbti 테스트를 마치고 나면 각 결과별 레진코믹스 웹툰 장르 상위 10개의 웹툰의 썸네일 이미지와 링크를 크롤링하여 그 중 하나를 랜덤으로 선택하여 추천합니다.
-추천된 웹툰의 이미지나 제목을 클릭하면 해당 레진코믹스 웹툰 페이지로 이동합니다.
-
+메인 추천
+<br/>
+12문항으로 이루어진 간단한 mbti 테스트를 마치고 나면 각 결과별 레진 웹툰 장르 상위 10개의 웹툰 중 하나를 랜덤으로 선택하여 추천합니다.
+<br/>
 ![testresult](https://user-images.githubusercontent.com/64121533/178947837-b4bfbf85-b14f-4c88-a021-66a866dd2783.gif)
+
+추천 웹툰 클릭 시 레진 코믹스 페이지로 이동
+<br/>
+![gotolz](https://user-images.githubusercontent.com/64121533/178951857-11d9c0d7-06bb-4734-9163-6d206361ea33.gif)
+
+하단 추천
+<br/>
+하단에는 실시간 랭킹 상위 4위까지를 추천합니다.
