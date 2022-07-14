@@ -10,6 +10,7 @@ mbti 결과를 토대로 레진 웹툰을 추천하는 서비스입니다.
 ### 활용 스택
 
 <hr/>
+
 FrontEnd
 <div style="display: flex">
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
