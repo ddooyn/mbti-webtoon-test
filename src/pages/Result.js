@@ -13,7 +13,12 @@ const Result = () => {
   const mbti = result ?? 'INTP';
 
   const resultData = (result) => {
-    fetch(`/getData?name=${result}`)
+    fetch(`/getData?name=${result}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
       .then((res) => {
         return res.json();
       })
