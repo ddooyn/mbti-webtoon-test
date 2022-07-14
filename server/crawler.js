@@ -24,7 +24,14 @@ const genreMap = new Map([
 ]);
 
 const crawler = async (genre) => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--window-size=1600,2000',
+    ],
+  });
 
   const page = await browser.newPage();
 
